@@ -8,14 +8,25 @@ import {black, lightBlue, red} from '../utils/colors'
 class Deck extends Component {
     state = {  }
     render() {
-        const singleCard= data["React"]
+        
+        const cardInformation= this.props.route.params.cardInfo
+        const singleCard= data[cardInformation.title]
         return (
            <View>
-               <Card card={singleCard.title}/>
-               <TouchableOpacity style={[styles.correct, styles.addCard]}>
+               <Card 
+               card={singleCard.title}
+               />
+               <TouchableOpacity 
+                    style={[styles.correct, styles.addCard]}
+                    onPress={()=>this.props.navigation.push("AddCard")}
+               >
                     <Text style={{fontSize: 20}}>Add Card</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[styles.correct, styles.addCard, {backgroundColor: lightBlue}]}>
+
+                <TouchableOpacity 
+                    style={[styles.correct, styles.addCard, {backgroundColor: lightBlue}]}
+                    onPress={()=>this.props.navigation.push("Quiz")}
+                >
                     <Text style={{fontSize: 20}}>Start Quiz</Text>                    
                 </TouchableOpacity>
            </View> 

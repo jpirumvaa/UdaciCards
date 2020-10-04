@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
       borderColor: black, 
       borderWidth: 1,
       marginTop: 15,
-    }
+    },
   });
 
 export default styles
