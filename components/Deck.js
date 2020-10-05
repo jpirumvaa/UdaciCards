@@ -18,7 +18,7 @@ class Deck extends Component {
                />
                <TouchableOpacity 
                     style={[styles.correct, styles.addCard]}
-                    onPress={()=>this.props.navigation.push("AddCard")}
+                    onPress={()=>this.props.navigation.push("AddCard", {name: "Add Card", cardInfo: cardInformation})}
                >
                     <Text style={{fontSize: 20}}>Add Card</Text>
                 </TouchableOpacity>

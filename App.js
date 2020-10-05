@@ -14,6 +14,9 @@ import Results from './components/Results'
 import FalseAnswer from './components/FalseAnswer'
 import AddDeck from './components/AddDeck'
 import AddCard from './components/AddCard'
+import reducer from './reducers'
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
 
 const Tabs= createBottomTabNavigator()
 const DeckListStack= createStackNavigator()
@@ -28,6 +31,7 @@ const DeckListScreen= () =>(
     <DeckListStack.Screen name="AddCard" component={AddCard} 
     options={
       {title: "Add Card"}
+    
     }/>
     <DeckListStack.Screen name="Quiz" component={Quiz} />
   </DeckListStack.Navigator>
@@ -42,47 +46,52 @@ const AddDeckScreen= () =>(
   </AddDeckStack.Navigator>
 )
 
+const deckListOptions= {
+  tabBarLabel: 'Deck List',
+  tabBarIcon: ({ color, size }) => (
+    <AntDesign name="filetext1" size={24} color="black" />
+  ),
+  tabBarBadge: 1,            
+}
+
+const addDeckOptions={
+  tabBarLabel: 'Add Deck',
+  tabBarIcon: ({ color, size }) => (
+    <AntDesign name="addfile" size={24} color="black" />
+  ),
+  tabBarBadge: 2
+}
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <StatusBar 
-        backgroundColor={lightBlue}
-        barStyle="light-content"/>
-      {/*
-      <View style={styles.container}>
-      <StatusBar 
-        backgroundColor={lightBlue}
-        barStyle="light-content"/>
-      <View style={{height: 30}}></View>
-      <AddCard/>
-      <Text>Hello from my awesome App: UdaciCards</Text>      
-    </View>
-       */
-      }
-      <Tabs.Navigator>
-          <Tabs.Screen name="DeckList" component={DeckListScreen}
-          options={{
-            tabBarLabel: 'Deck List',
-            tabBarIcon: ({ color, size }) => (
-              <AntDesign name="filetext1" size={24} color="black" />
-            ),
-            tabBarBadge: 1,            
-          }}
-          />
-          <Tabs.Screen name="Add Deck" 
-          component={AddDeckScreen} 
-          options={{
-            tabBarLabel: 'Add Deck',
-            tabBarIcon: ({ color, size }) => (
-              <AntDesign name="addfile" size={24} color="black" />
-            ),
-            tabBarBadge: 2
-          }}         
-          />
-      </Tabs.Navigator>
-      
-    </NavigationContainer>
+    <Provider store={createStore(reducer)}>
+      <NavigationContainer>
+            <StatusBar 
+              backgroundColor={lightBlue}
+              barStyle="light-content"/>
+            {/*
+            <View style={styles.container}>
+            <StatusBar 
+              backgroundColor={lightBlue}
+              barStyle="light-content"/>
+            <View style={{height: 30}}></View>
+            <AddCard/>
+            <Text>Hello from my awesome App: UdaciCards</Text>      
+          </View>
+            */
+            }
+            <Tabs.Navigator>
+                <Tabs.Screen name="DeckList" component={DeckListScreen}
+                options={deckListOptions}
+                />
+                <Tabs.Screen name="Add Deck" 
+                component={AddDeckScreen} 
+                options={addDeckOptions}         
+                />
+            </Tabs.Navigator>            
+      </NavigationContainer>
+          
+    </Provider>
     
   );
 }
