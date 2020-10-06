@@ -43,3 +43,6 @@ export function saveCardToDB (deckTitle, card) {
       );
     });
   }
+export function deleteAllDecks(){
+  return AsyncStorage.clear()
+}

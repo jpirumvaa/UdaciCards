@@ -22,55 +22,5 @@
             }
           ],
           "score": 0
-        },
-
-        "React Native": {
-          "title": "React",
-          "questions": [
-            {
-              "question": "What is React?",
-              "answer": "A library for managing user interfaces"
-            },
-            {
-              "question": "Where do you make Ajax requests in React?",
-              "answer": "The componentDidMount lifecycle event"
-            }
-          ],
-          "score": 0
-        },
-        "Cyber Security": {
-          "title": "JavaScript",
-          "questions": [
-            {
-              "question": "What is a closure?",
-              "answer": "The combination of a function and the lexical environment within which that function was declared."
-            }
-          ],
-          "score": 0
-        },
-
-        "Networking": {
-          "title": "React",
-          "questions": [
-            {
-              "question": "What is React?",
-              "answer": "A library for managing user interfaces"
-            },
-            {
-              "question": "Where do you make Ajax requests in React?",
-              "answer": "The componentDidMount lifecycle event"
-            }
-          ],
-          "score": 0
-        },
-        "Pen Testing": {
-          "title": "JavaScript",
-          "questions": [
-            {
-              "question": "What is a closure?",
-              "answer": "The combination of a function and the lexical environment within which that function was declared."
-            }
-          ],
-          "score": 0
-        }
+        }        
 }
