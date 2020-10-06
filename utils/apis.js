@@ -20,9 +20,18 @@ export function getDecksFromDB(){
       );
 }
 
+export function receiveDeck(id) {
+  return AsyncStorage.getItem (DECKS_DB_KEY)
+    .then (deck => {
+      return JSON.parse (deck)[id];
+    })
+    .catch (e =>
+      console.log ('An error occured. Please, try again: ', e)
+    );
+}
 
 export function saveCardToDB (deckTitle, card) {
-    getDeck (deckTitle).then (deck => {
+    receiveDeck(deckTitle).then (deck => {
       return AsyncStorage.mergeItem (
         DECKS_DB_KEY,
         JSON.stringify ({

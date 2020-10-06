@@ -28,8 +28,11 @@ class AddDeck extends Component {
               score:0
             };
             console.log("Saved Deck is:", deck)
-            dispatch (addDeck(deck))
+            //dispatch (addDeck(deck))
             addDeckToDB(deck)
+            this.setState({
+                title: ""
+            })
             //title="" reset input
         }
     }

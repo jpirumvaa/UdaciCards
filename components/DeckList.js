@@ -20,7 +20,7 @@ class DeckList extends Component {
 
     
     render() {
-        //console.log("Decks are:", this.props.decks)
+        console.log("Decks are:", this.props.decks)
         //console.log(data)
         //const data= this.props.decks
         return (

@@ -22,29 +22,31 @@ class AddDeck extends Component {
           });        
       }
 
-    handleSubmit(){
-        //const {question, answer} = this.state;
-        console.log("Hello World", this.state)
-        // const {dispatch, route}= this.props
-        // if(question.trim()===""){
-        //     alert("Question cannot be empty")
-        // }else if(answer.trim()===""){
-        //     alert("Answer cannot be empty")
-        // }else{
-        //     const title= route.params.cardInfo.title
-        //     const card= {
-        //         question: question,
-        //         answer: answer
-        //     }
-        //     dispatch(addCard(title, card))
-        //     saveCardToDB(title, card)
-        //     this.setState({
-        //         question: "",
-        //         answer: ""
-        //     })
-        //     console.log("Saved Card is:", card)
-        // }
-      }
+    handleSubmit=()=>{
+        const {question, answer} = this.state;
+        //console.log("Hello World", this.state)
+        const {dispatch, cardInfo}= this.props
+        if(question.trim()===""){
+            alert("Question cannot be empty")
+        }else if(answer.trim()===""){
+            alert("Answer cannot be empty")
+        }else{
+            const title= cardInfo.title
+            console.log(title)
+            
+            const card= {
+                question: question,
+                answer: answer
+            }
+            //dispatch(addCard(title, card))
+            saveCardToDB(title, card)
+            this.setState({
+                question: "",
+                answer: ""
+            })
+            console.log("Saved Card is:", card)
+        }
+    }
     render() {
         const cardInformation= this.props.route.params.cardInfo
         //console.log(cardInformation.title)
@@ -74,5 +76,11 @@ class AddDeck extends Component {
         );
     }
 }
+function mapStateToProps (state, {route}) {
+    const {cardInfo} = route.params;
+    return {
+      cardInfo,
+    };
+  }
 
-export default connect()(AddDeck);
+export default connect(mapStateToProps)(AddDeck);
