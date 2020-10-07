@@ -9,6 +9,7 @@ class AddDeck extends Component {
   state = {
     question: "",
     answer: "",
+    wrongAnswer: "",
   };
 
   handleQuestionChange(value) {
@@ -21,9 +22,14 @@ class AddDeck extends Component {
       answer: value,
     });
   }
+  handleWrongQChange(value) {
+    this.setState({
+      wrongAnswer: value,
+    });
+  }
 
   handleSubmit = () => {
-    const { question, answer } = this.state;
+    const { question, answer, wrongAnswer } = this.state;
     const { dispatch, cardInfo } = this.props;
     if (question.trim() === "") {
       alert("Question cannot be empty");
@@ -32,15 +38,18 @@ class AddDeck extends Component {
     } else {
       const title = cardInfo.title;
       const card = {
-        question: question,
-        answer: answer,
+        question,
+        answer,
+        wrongAnswer,
       };
       dispatch(addCard(title, card));
       saveCardToDB(title, card);
       this.setState({
         question: "",
         answer: "",
+        wrongAnswer: "",
       });
+      this.props.navigation.pop();
       //Todo: redirect to deck after adding card
     }
   };
@@ -55,7 +64,14 @@ class AddDeck extends Component {
           value={this.state.question}
           style={styles.txtInput}
         />
-        <Text style={{ fontSize: 20 }}>Answer:</Text>
+        <Text style={{ fontSize: 20 }}>Wrong Answer:</Text>
+        <TextInput
+          onChangeText={(value) => this.handleWrongQChange(value)}
+          placeholder="Enter Wrong Answer"
+          value={this.state.wrongAnswer}
+          style={styles.txtInput}
+        />
+        <Text style={{ fontSize: 20 }}>Corrent Answer:</Text>
         <TextInput
           style={styles.txtInput}
           onChangeText={(value) => this.handleAnswerChange(value)}

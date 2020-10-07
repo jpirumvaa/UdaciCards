@@ -4,20 +4,27 @@ import { connect } from "react-redux";
 import styles from "../utils/styles";
 import Card from "./Card";
 import { deleteAllDecks, getDecksFromDB } from "../utils/apis";
-import { getDecks } from "../actions";
+import { getDecks, removeAllDecks } from "../actions";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 class DeckList extends Component {
-  state = {};
   componentDidMount() {
     const { dispatch } = this.props;
     getDecksFromDB().then((decks) => {
       dispatch(getDecks(decks));
     });
   }
+  deleteDecks = () => {
+    const { dispatch, navigation, decks } = this.props;
+    deleteAllDecks()
+      .then(() => dispatch(removeAllDecks(decks)))
+      .then(() => navigation.navigate("AddDeck"));
+
+    //alert("hello");
+  };
 
   render() {
-    const data = {
+    let data = {
       ...this.props.decks,
     };
 
@@ -25,7 +32,7 @@ class DeckList extends Component {
       <ScrollView style={styles.container}>
         <Text style={styles.decks}>Decks</Text>
         <TouchableOpacity
-          onPress={() => deleteAllDecks()}
+          onPress={() => this.deleteDecks()}
           style={styles.deleteAllDecks}
         >
           <Text>Delete All Decks</Text>
@@ -37,6 +44,7 @@ class DeckList extends Component {
               key={obj}
               data={data}
               navigation={this.props.navigation}
+              handleRefresh={this.handleRefresh}
             />
           );
         })}

@@ -14,6 +14,7 @@ import Results from "./components/Results";
 import FalseAnswer from "./components/FalseAnswer";
 import AddDeck from "./components/AddDeck";
 import AddCard from "./components/AddCard";
+import NoCards from "./components/NoCards";
 import reducer from "./reducers";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
@@ -30,6 +31,11 @@ const DeckListScreen = () => (
       options={{ title: "Available Decks" }}
     />
     <DeckListStack.Screen name="Deck" component={Deck} />
+    <DeckListStack.Screen
+      name="NoCards"
+      component={NoCards}
+      options={{ title: "No Cards" }}
+    />
     <DeckListStack.Screen
       name="AddCard"
       component={AddCard}

@@ -14,6 +14,8 @@ class Deck extends Component {
     const cardInformation = this.props.route.params.cardInfo;
     const data = this.props.route.params.data;
     let singleCard;
+    const noCards = data[cardInformation.title].questions.length;
+    console.log("HHhhhh", cardInformation);
 
     if (data == undefined) {
       console.log("No data available");
@@ -26,12 +28,13 @@ class Deck extends Component {
         <Card card={singleCard.title} data={data} />
         <TouchableOpacity
           style={[styles.correct, styles.addCard]}
-          onPress={() =>
+          onPress={() => {
             this.props.navigation.push("AddCard", {
               name: "Add Card",
               cardInfo: cardInformation,
-            })
-          }
+              data: data,
+            });
+          }}
         >
           <Text style={{ fontSize: 20 }}>Add Card</Text>
         </TouchableOpacity>
@@ -42,7 +45,19 @@ class Deck extends Component {
             styles.addCard,
             { backgroundColor: lightBlue },
           ]}
-          onPress={() => this.props.navigation.push("Quiz")}
+          onPress={() => {
+            if (!noCards) {
+              this.props.navigation.push("NoCards", {
+                name: "NoCards",
+              });
+            } else {
+              this.props.navigation.push("Quiz", {
+                name: "Quiz",
+                cardInfo: cardInformation,
+                data: data,
+              });
+            }
+          }}
         >
           <Text style={{ fontSize: 20 }}>Start Quiz</Text>
         </TouchableOpacity>
