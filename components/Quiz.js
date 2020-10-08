@@ -67,12 +67,14 @@ class Quiz extends Component {
     const quizLocation = quizInfo.questions.indexOf(
       quizInfo.questions[this.state.qIndex]
     );
+    const finalScore = this.state.score;
+    const quizLength = quizInfo.questions.length;
     const checkCompletion = (quizLocation, index) => {
       const scores = (this.state.score + 1 / quizInfo.questions.length) * 100;
       if (quizLocation === index) {
         this.props.navigation.push("Results", {
-          score: this.state.score,
-          quizLength: quizInfo.questions.length,
+          score: finalScore,
+          quizLength: quizLength,
         });
       }
     };
