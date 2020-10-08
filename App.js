@@ -1,17 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { AntDesign } from "@expo/vector-icons";
-import styles from "./utils/styles";
 import DeckList from "./components/DeckList";
-import { black, lightBlue } from "./utils/colors";
+import { lightBlue } from "./utils/colors";
 import Quiz from "./components/Quiz";
 import Deck from "./components/Deck";
 import Results from "./components/Results";
-import FalseAnswer from "./components/FalseAnswer";
 import AddDeck from "./components/AddDeck";
 import AddCard from "./components/AddCard";
 import NoCards from "./components/NoCards";
@@ -42,6 +39,8 @@ const DeckListScreen = () => (
       options={{ title: "Add Card" }}
     />
     <DeckListStack.Screen name="Quiz" component={Quiz} />
+    <DeckListStack.Screen name="Results" component={Results} />
+    <DeckListStack.Screen name="AddDeck" component={AddDeck} />
   </DeckListStack.Navigator>
 );
 

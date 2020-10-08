@@ -49,8 +49,7 @@ class AddDeck extends Component {
         answer: "",
         wrongAnswer: "",
       });
-      this.props.navigation.pop();
-      //Todo: redirect to deck after adding card
+      this.props.navigation.navigate("DeckList");
     }
   };
   render() {

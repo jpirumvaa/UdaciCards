@@ -19,8 +19,6 @@ class DeckList extends Component {
     deleteAllDecks()
       .then(() => dispatch(removeAllDecks(decks)))
       .then(() => navigation.navigate("AddDeck"));
-
-    //alert("hello");
   };
 
   render() {

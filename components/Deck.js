@@ -15,10 +15,9 @@ class Deck extends Component {
     const data = this.props.route.params.data;
     let singleCard;
     const noCards = data[cardInformation.title].questions.length;
-    console.log("HHhhhh", cardInformation);
 
     if (data == undefined) {
-      console.log("No data available");
+      alert("No Data Available");
     } else {
       singleCard = data[cardInformation.title];
     }
@@ -55,6 +54,7 @@ class Deck extends Component {
                 name: "Quiz",
                 cardInfo: cardInformation,
                 data: data,
+                navigation: this.props.navigation,
               });
             }
           }}

@@ -33,7 +33,6 @@ class AddDeck extends Component {
         title: "",
       });
       this.props.navigation.navigate("DeckList");
-      //Todo: redirect to decklist after addign a deck
     }
   };
 
