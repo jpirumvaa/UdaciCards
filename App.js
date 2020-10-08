@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { Component } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -15,6 +15,7 @@ import NoCards from "./components/NoCards";
 import reducer from "./reducers";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
+import { setLocalNotification } from "./utils/helpers";
 
 const Tabs = createBottomTabNavigator();
 const DeckListStack = createStackNavigator();
@@ -65,25 +66,30 @@ const addDeckOptions = {
   tabBarIcon: () => <AntDesign name="addfile" size={24} color="black" />,
   tabBarBadge: 2,
 };
-
-export default function App() {
-  return (
-    <Provider store={createStore(reducer)}>
-      <NavigationContainer>
-        <StatusBar backgroundColor={lightBlue} barStyle="light-content" />
-        <Tabs.Navigator>
-          <Tabs.Screen
-            name="DeckList"
-            component={DeckListScreen}
-            options={deckListOptions}
-          />
-          <Tabs.Screen
-            name="Add Deck"
-            component={AddDeckScreen}
-            options={addDeckOptions}
-          />
-        </Tabs.Navigator>
-      </NavigationContainer>
-    </Provider>
-  );
+class App extends Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
+  render() {
+    return (
+      <Provider store={createStore(reducer)}>
+        <NavigationContainer>
+          <StatusBar backgroundColor={lightBlue} barStyle="light-content" />
+          <Tabs.Navigator>
+            <Tabs.Screen
+              name="DeckList"
+              component={DeckListScreen}
+              options={deckListOptions}
+            />
+            <Tabs.Screen
+              name="Add Deck"
+              component={AddDeckScreen}
+              options={addDeckOptions}
+            />
+          </Tabs.Navigator>
+        </NavigationContainer>
+      </Provider>
+    );
+  }
 }
+export default App;

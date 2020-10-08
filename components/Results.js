@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import styles from "../utils/styles";
+import { setLocalNotification, clearLocalNotification } from "../utils/helpers";
 
 class Results extends Component {
+  componentDidMount() {
+    clearLocalNotification().then(setLocalNotification);
+  }
   render() {
     const { score, quizLength } = this.props.route.params;
 
