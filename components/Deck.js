@@ -50,11 +50,12 @@ class Deck extends Component {
                 name: "NoCards",
               });
             } else {
+              const navigation = this.props.navigation;
               this.props.navigation.push("Quiz", {
                 name: "Quiz",
                 cardInfo: cardInformation,
                 data: data,
-                navigation: this.props.navigation,
+                navigation: navigation,
               });
             }
           }}
