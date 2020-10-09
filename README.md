@@ -5,6 +5,10 @@ Mobile Flashcards, is a game that is a part of React Nanodegre Program at Udacit
 # Running the App
 
 The app can be ran by cloning it, installing expo, and running expo start or yarn start
+The steps are simple as running:
+
+1. yarn install or npm install
+2. yarn start, expo start, or npm start
 
 # App Functionality
 

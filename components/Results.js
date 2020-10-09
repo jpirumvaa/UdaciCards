@@ -8,7 +8,7 @@ class Results extends Component {
     clearLocalNotification().then(setLocalNotification);
   }
   render() {
-    const { score, quizLength } = this.props.route.params;
+    const { score, quizLength, setState } = this.props.route.params;
     const actualScore = ((score + 1) / quizLength) * 100;
 
     return (
@@ -19,7 +19,7 @@ class Results extends Component {
         <TouchableOpacity
           style={styles.correct}
           onPress={() => {
-            this.props.navigation.navigate("DeckList");
+            this.props.navigation.navigate("Deck");
           }}
         >
           <Text>Keep Training</Text>
@@ -27,7 +27,11 @@ class Results extends Component {
         <TouchableOpacity
           style={styles.correct}
           onPress={() => {
-            this.props.navigation.goBack();
+            setState({
+              qIndex:0,
+              score:0
+            })
+            this.props.navigation.pop();
           }}
         >
           <Text>Retake the Quiz</Text>

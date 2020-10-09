@@ -15,7 +15,11 @@ import NoCards from "./components/NoCards";
 import reducer from "./reducers";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-import { setLocalNotification } from "./utils/helpers";
+import {
+  setLocalNotification,
+  askPermissions,
+  scheduleNotification,
+} from "./utils/helpers";
 
 const Tabs = createBottomTabNavigator();
 const DeckListStack = createStackNavigator();
@@ -70,6 +74,7 @@ class App extends Component {
   componentDidMount() {
     setLocalNotification();
   }
+
   render() {
     return (
       <Provider store={createStore(reducer)}>

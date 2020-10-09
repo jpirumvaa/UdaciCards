@@ -8,6 +8,7 @@ class Quiz extends Component {
     qIndex: 0,
     score: 0,
   };
+
   checkCorrect = (selectedAnswer, quizInfo) => {
     if (selectedAnswer === quizInfo.questions[this.state.qIndex].answer) {
       alert("You Got the Correct Answer");
@@ -54,6 +55,7 @@ class Quiz extends Component {
   render() {
     const { cardInfo, data } = this.props.route.params;
     const { qIndex, score } = this.state;
+    const {navigation}= this.props
 
     const quizInfo = data[cardInfo.title];
     const answers = [
@@ -71,11 +73,13 @@ class Quiz extends Component {
     const quizLength = quizInfo.questions.length;
     const checkCompletion = (quizLocation, index) => {
       const scores = (this.state.score + 1 / quizInfo.questions.length) * 100;
+      const navOptions={
+        score: finalScore,
+        quizLength: quizLength,
+        setState: (p)=>this.setState(p)
+      }
       if (quizLocation === index) {
-        this.props.navigation.push("Results", {
-          score: finalScore,
-          quizLength: quizLength,
-        });
+        navigation.push("Results", navOptions);
       }
     };
 

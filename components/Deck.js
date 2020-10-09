@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity,SafeAreaView } from "react-native";
 import { connect } from "react-redux";
 import Card from "./Card";
 import styles from "../utils/styles";
@@ -23,7 +23,7 @@ class Deck extends Component {
     }
 
     return (
-      <View>
+      <SafeAreaView>
         <Card card={singleCard.title} data={data} />
         <TouchableOpacity
           style={[styles.correct, styles.addCard]}
@@ -62,7 +62,7 @@ class Deck extends Component {
         >
           <Text style={{ fontSize: 20 }}>Start Quiz</Text>
         </TouchableOpacity>
-      </View>
+      </SafeAreaView>
     );
   }
 }
