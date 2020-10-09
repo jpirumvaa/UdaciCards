@@ -1,7 +1,11 @@
 import React, { Component } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, LogBox } from "react-native";
 import styles from "../utils/styles";
 import { red } from "../utils/colors";
+
+LogBox.ignoreLogs([
+  'Non-serializable values were found in the navigation state',
+]);
 
 class Quiz extends Component {
   state = {

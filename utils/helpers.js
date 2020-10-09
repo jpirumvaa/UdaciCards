@@ -6,7 +6,7 @@ const NOTIFICATION_KEY = "Flashcard:notifications";
 
 export function clearLocalNotification() {
   return AsyncStorage.removeItem(NOTIFICATION_KEY).then(
-    Notifications.cancelAllScheduledNotificationsAsync
+    Notifications.cancelAllScheduledNotificationsAsync()
   );
 }
 
@@ -35,11 +35,15 @@ export function setLocalNotification() {
             tomorrow.setDate(tomorrow.getDate() + 1);
             tomorrow.setHours(18);
             tomorrow.setMinutes(30);
+            try{
             Notifications.scheduleLocalNotificationAsync(createNotification(), {
               time: tomorrow,
               repeat: "day",
-            });
+            });            
             AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
+          }catch(e){
+            console.log("Something went wrong when scheduling notifications. Reload your app to try again if you are eager to enjoy this feature")
+          }
           }
         });
       }

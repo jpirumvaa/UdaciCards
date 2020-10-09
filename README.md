@@ -2,6 +2,10 @@
 
 Mobile Flashcards, is a game that is a part of React Nanodegre Program at Udacity. It enables mastery of Redux as a state management library and React Native as a Mobile Developent Library. It is an app that uses React Native as a UI library and Redux as a State management Library. In this app, people can add decks, quizes, and most interesting, they can do the quizes to test their knowlege.
 
+# Platform
+
+This app was developed and tested using expo running on Android 9
+
 # Running the App
 
 The app can be ran by cloning it, installing expo, and running expo start or yarn start
